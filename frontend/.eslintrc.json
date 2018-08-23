@@ -1,0 +1,27 @@
+{
+  "extends": ["airbnb", "jest-enzyme"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+    "import/no-unresolved": "off",
+    "react/jsx-filename-extension": [1, {"extensions": [".js"]}],
+    "valid-jsdoc": ["error", {
+      "requireReturn": false,
+      "requireReturnType": false,
+      "requireParamDescription": false,
+      "requireReturnDescription": false
+    }],
+    "require-jsdoc": ["error", {
+        "require": {
+            "FunctionDeclaration": false,
+            "MethodDefinition": false,
+            "ClassDeclaration": false
+        }
+    }]
+  }
+}
