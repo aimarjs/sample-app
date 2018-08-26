@@ -33,7 +33,7 @@ class Login extends Component {
       <div>{user.name}</div>
     ) : (
       <GoogleLogin
-        clientId={config.GOOGLE_CLIENT_ID}
+        clientId={config.clientID}
         buttonText="Login"
         onSuccess={this.googleResponse}
         onFailure={this.onFailure}
