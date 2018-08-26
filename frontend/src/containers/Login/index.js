@@ -19,18 +19,18 @@ class Login extends Component {
   };
 
   googleResponse = (response) => {
-    this.props.onLogin(response)
+    this.props.onLogin(response);
   };
 
-  onFailure = error => {
+  onFailure = (error) => {
     alert(error);
   };
 
   render() {
-    const { isAuthenticated, user } = this.props;
+    const { isAuthenticated } = this.props;
 
     const content = isAuthenticated ? (
-      <div>{user.name}</div>
+      <div>Welcome</div>
     ) : (
       <GoogleLogin
         clientId={config.clientID}
@@ -42,7 +42,6 @@ class Login extends Component {
     );
 
     // console.log(this.state);
-    console.log(config);
     return content;
   }
 }

@@ -5,13 +5,17 @@ var Schema = mongoose.Schema;
 
 module.exports = function () {
 
-    var db = mongoose.connect('mongodb://localhost:27017/sample-app', { useNewUrlParser: true });
+    var options = {
+      useNewUrlParser: true,
+    }
+
+    var db = mongoose.connect('mongodb://localhost:27017/sample-app', options);
 
     var UserSchema = new Schema({
         email: {
             type: String, required: true,
             trim: true, unique: true,
-            match: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@worth.systems/
+            // match: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@worth.systems/
             // match: /\S+@worth.systems/
         },
         googleProvider: {

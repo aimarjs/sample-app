@@ -8,9 +8,9 @@ services:
     restart: always
     ports:
       - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: '!1qwerty'
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: 'iahsd97asdh87ahd97ashd87asd8yasgd8gsd'
 
   mongo-express:
     image: mongo-express
@@ -18,6 +18,6 @@ services:
     restart: always
     ports:
       - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: '!1qwerty'
+    # environment:
+    #   ME_CONFIG_MONGODB_ADMINUSERNAME: root
+    #   ME_CONFIG_MONGODB_ADMINPASSWORD: '!1qwerty'

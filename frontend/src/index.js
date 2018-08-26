@@ -8,12 +8,11 @@ import App from './components/App';
 import store from './store/configStore';
 // import registerServiceWorker from './registerServiceWorker';
 
-const token = localStorage.getItem('token');
-
-console.log(token);
-if (token) {
-  store.dispatch({ type: 'AUTH_USER' });
-}
+// const token = localStorage.getItem('accessToken');
+//
+// if (token) {
+//   store.dispatch({ type: 'CHECK_AUTH', token });
+// }
 
 const application = (
   <Provider store={store}>
