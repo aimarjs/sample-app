@@ -1,6 +1,9 @@
-import React, { Component } from "react";
-import { GoogleLogin } from "react-google-login";
-import config from "../../config";
+import React, { Component } from 'react';
+import { GoogleLogin } from 'react-google-login';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
+
+import config from '../../config';
 
 const initialState = {
   isAuthenticated: false,
@@ -16,27 +19,7 @@ class Login extends Component {
   };
 
   googleResponse = (response) => {
-    console.log(response);
-    const tokenBlob = new Blob(
-      [JSON.stringify({ access_token: response.accessToken }, null, 2)],
-      { type: 'application/json' },
-    );
-    const options = {
-      method: 'POST',
-      body: tokenBlob,
-      mode: 'cors',
-      cache: 'default',
-    };
-    fetch('http://localhost:4000/api/v1/auth/google', options).then((r) => {
-      const token = r.headers.get('x-auth-token');
-      r.json().then((user) => {
-        if (token) {
-          this.setState({ isAuthenticated: true, user, token });
-        } else {
-          alert('ERROR!');
-        }
-      });
-    });
+    this.props.onLogin(response)
   };
 
   onFailure = error => {
@@ -44,22 +27,34 @@ class Login extends Component {
   };
 
   render() {
-    const { isAuthenticated } = this.state;
+    const { isAuthenticated, user } = this.props;
 
     const content = isAuthenticated ? (
-      <div>Authenticated!</div>
+      <div>{user.name}</div>
     ) : (
       <GoogleLogin
         clientId={config.GOOGLE_CLIENT_ID}
         buttonText="Login"
         onSuccess={this.googleResponse}
         onFailure={this.onFailure}
+        hostedDomain="worth.systems"
       />
     );
 
-    console.log(this.state);
+    // console.log(this.state);
+    // console.log(this.props);
     return content;
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLogin: response => dispatch(actions.authUser(response)),
+  onLogout: () => dispatch(actions.logoutUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
