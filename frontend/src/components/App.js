@@ -11,6 +11,7 @@ class App extends Component {
   componentDidMount() {
 
   }
+
   render() {
     return (
       <div className="App">
@@ -36,4 +37,4 @@ class App extends Component {
 //   </div>
 // );
 
-export default App;
+export default connect()(App);

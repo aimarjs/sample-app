@@ -42,7 +42,7 @@ class Login extends Component {
     );
 
     // console.log(this.state);
-    // console.log(this.props);
+    console.log(config);
     return content;
   }
 }
